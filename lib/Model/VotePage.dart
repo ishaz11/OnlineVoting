@@ -16,6 +16,7 @@ class _VotepageState extends State<Votepage> {
   var isLoaded = false;
   var positionisLoaded = false;
   var cbxValue = false;
+  var votedCandidates=[];
 
   @override
   void initState() {
@@ -36,7 +37,9 @@ class _VotepageState extends State<Votepage> {
     }
   }
 
-  vote(candidateId) async {}
+  vote(candidateId, count) async {
+
+  }
 
   //Get list of party list
   // getPositions() async {
@@ -54,6 +57,9 @@ class _VotepageState extends State<Votepage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('VOTE'),
+          actions: <Widget>[
+            IconButton(onPressed: () {}, icon: Icon(Icons.check))
+          ],
         ),
         body: Visibility(
           visible: isLoaded,
@@ -63,16 +69,17 @@ class _VotepageState extends State<Votepage> {
                 return Card(
                   child: Column(
                     children: <Widget>[
-                      const Text('THIS IS A TITLE'),
-                      for (var item in candidates!)
+                      Text(
+                          '${positions?[index].positionName} (Select - ${positions?[index].count})'),
+                      for (var item in candidates!.where((candidate) =>
+                          candidate.positionId == positions?[index].positionId))
                         CheckboxListTile(
                           title: Text('${item.firstName}'),
-                          subtitle: Text('${item.lastName}'),
-                          value: cbxValue,
-                          onChanged: (value)  {
+                          subtitle: Text('${item.partyListName}'),
+                          value: item.checkboxValue,
+                          onChanged: (value) {
                             setState(() {
-                              this.cbxValue = value!;
-                              vote(item.candidateId);
+                              item.checkboxValue = vote(item.candidateId, positions?[index].count);
                             });
                           },
                         )

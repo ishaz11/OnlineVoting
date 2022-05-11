@@ -15,6 +15,8 @@ class Candidates {
     this.firstName,
     this.lastName,
     this.partyListName,
+    this.checkboxValue,
+    this.positionId,
   });
 
   int? candidateId;
@@ -22,6 +24,8 @@ class Candidates {
   String? firstName;
   String? lastName;
   String? partyListName;
+  bool? checkboxValue;
+  int? positionId;
 
   factory Candidates.fromJson(Map<String, dynamic> json) => Candidates(
     candidateId: json["CandidateID"],
@@ -29,6 +33,8 @@ class Candidates {
     firstName: json["FirstName"],
     lastName: json["LastName"],
     partyListName: json["PartyListName"],
+    checkboxValue: json["checkboxValue"],
+    positionId: json["positionID"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -37,5 +43,7 @@ class Candidates {
     "FirstName": firstName,
     "LastName": lastName,
     "PartyListName": partyListName,
+    "checkboxValue": checkboxValue,
+    "positionID": positionId,
   };
 }
