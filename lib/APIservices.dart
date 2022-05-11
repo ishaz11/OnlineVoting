@@ -2,7 +2,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:onlinevoting/Model/Candidates.dart';
-import 'package:onlinevoting/Model/Partylist.dart';
 import 'package:onlinevoting/Model/Positions.dart';
 
 class ApiServices {
